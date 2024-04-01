@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import {Router} from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-barnav',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './barnav.component.html',
   styleUrl: './barnav.component.css'
 })
