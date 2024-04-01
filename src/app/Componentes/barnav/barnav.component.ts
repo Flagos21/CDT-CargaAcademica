@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import {Router} from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-barnav',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './barnav.component.html',
   styleUrl: './barnav.component.css'
 })
@@ -14,22 +14,5 @@ export class BarnavComponent {
   ){   
   }  
   //Esto  es para que el usuario pueda navegar 
-  redirigirPortada() {
-    this.router.navigate(['/portada']); // Reemplaza 'otro-componente' con la ruta de tu componente de destino
-  }
-  redirigirCrearAsignatura() {
-    this.router.navigate(['/crear-asignatura']); // Reemplaza 'otro-componente' con la ruta de tu componente de destino
-  }
-  redirigirAsignarAsignatura() {
-    this.router.navigate(['/asignar-asignatura']); // Reemplaza 'otro-componente' con la ruta de tu componente de destino
-  }
-  redirigirListarAsignatura() {
-    this.router.navigate(['/listar-asignatura']); // Reemplaza 'otro-componente' con la ruta de tu componente de destino
-  }
-  redirigirCrearDocente() {
-    this.router.navigate(['/profesor']); // Reemplaza 'otro-componente' con la ruta de tu componente de destino
-  }
-  redirigirListarDocentes() {
-    this.router.navigate(['/listar-docentes']); // Reemplaza 'otro-componente' con la ruta de tu componente de destino
-  }
+  
 }
