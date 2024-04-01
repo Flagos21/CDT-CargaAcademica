@@ -1,0 +1,114 @@
+body {
+    font-family: Arial, 'Times New Roman', Times, serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #003264;
+    color: #fff;
+    padding: 5px;
+    text-align: center;
+}
+
+main {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+section {
+    border: 1px solid #cccccc;
+    padding: 20px;
+    width: 70%;
+}
+
+section h2 {
+    margin-top: 0;
+    width: 45%;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table th, table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+}
+
+table th {
+    background-color: #f2f2f2;
+}
+
+button {
+    background-color: #00a8ff;
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+input[type="text"],
+input[type="file"] {
+    width: calc(100% - 16px);
+    padding: 8px;
+    margin-bottom: 10px;
+}
+
+/* Estilos del botón */
+.dropbtn {
+    background-color: #3498DB;
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  /* Estilos del contenedor del menú desplegable */
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  /* Estilos del contenido del menú desplegable */
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  /* Estilos de los enlaces del menú desplegable */
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  /* Estilos de los enlaces cuando se pasan por encima */
+  .dropdown-content a:hover {
+    background-color: #ddd;
+  }
+  
+  /* Mostrar el contenido del menú desplegable cuando se pasa por encima del contenedor */
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
+/* Estilos del enlace seleccionado */
+.dropdown-content a.selected {
+    background-color: #3498DB;
+    color: white;
+  }
