@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carga Horaria</title>
+    <link rel="stylesheet" href="carga-horaria.component.css">
+</head>
+<body>
+    <header>
+        <h1>Carga Horaria</h1>
+    </header>
+        <section id="Ingresar">
+            <h2>Ingresar</h2>
+            <br>
+            <label for="rut">Rut:</label>
+            <input type="text" id="rut" name="rut">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="Nombre" name="Nombre">
+            <label for="Grado">Grado:</label>
+            <input type="text" id="Grado" name="Grado">
+            <br>
+            <div class="dropdown">
+                <label for="Jerarquización">Jerarquización:</label>
+                <button onclick="toggleDropdown()" class="dropbtn">Seleccionar opción</button>
+                <div id="dropdown-content" class="dropdown-content">
+                    <a href="#" onclick="selectOption(1)">Instructor</a>
+                    <a href="#" onclick="selectOption(2)">Asistente</a>
+                    <a href="#" onclick="selectOption(3)">Asociado</a>
+                    <a href="#" onclick="selectOption(4)">Titular</a>
+                </div>
+            <br>
+            <label for="Hora contrato">Hora contrato:</label>
+            <input type="text" id="Hora contrato" name="Hora contrato">
+            <label for="PosibleHorasDeDocencia">Posible Horas de Docencia :</label>
+            <input type="text" id="PosibleHorasDeDocencia" name="PosibleHorasDeDocencia">
+        </section>
+        <br>
+</body>
+<section id="DocenciaDirecta">
+    <h3>Docencia Directa</h3>
+    <table id="DocenciaDirecta-table">
+        <thead>
+            <tr>
+                <th>Asignatura</th>
+                <th>Horas 45´</th>
+                <th>Minutos</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody id="DocenciaDirecta-body">
+            <!-- Las asignaturas se cargarán aquí -->
+        </tbody>
+    </table>
+    <button onclick="agregarFila('DocenciaDirecta')">Agregar Fila</button>
+    <button onclick="agregarAsignatura('DocenciaDirecta')">Agregar Asignatura</button>
+</section>
+    <br>
+    <section id="DocenciaIndirecta">
+        <h4>Docencia Indirecta</h4>
+        <table id="DocenciaIndirecta-table">
+            <thead>
+                <tr>
+                    <th>Concepto</th>
+                    <th>Horas</th>
+                    <th>Minutos</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="DocenciaIndirecta-body">
+                <!-- Las asignaturas se cargarán aquí -->
+            </tbody>
+        </table>
+        <button onclick="agregarFila('DocenciaIndirecta')">Agregar Fila</button>
+        <button onclick="agregar('DocenciaDirecta')">Agregar Asignatura</button>
+    </section>
+    <br>
+    <section id="OtrosTrabajosDeGestionAcademica">
+        <h5>Otros Trabajos de Gestión Académica</h5>
+        <table id="OtrosTrabajosDeGestionAcademica-table">
+            <thead>
+                <tr>
+                    <th>Concepto</th>
+                    <th>Horas 60'</th>
+                    <th>Minutos</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="OtrosTrabajosDeGestionAcademica-body">
+                <!-- Las asignaturas se cargarán aquí -->
+            </tbody>
+        </table>
+        <button onclick="agregarFila('OtrosTrabajosDeGestionAcademica')">Agregar Fila</button>
+        <button onclick="agregarasignatura('DocenciaDirecta')">Agregar Asignatura</button>
+    </section>
+</main>
+    <!-- Incluir el script JavaScript compilado -->
+    <script src="carga-horaria.component.ts"></script>
+</html>
