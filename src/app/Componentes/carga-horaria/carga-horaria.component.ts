@@ -1,25 +1,17 @@
 import { Component } from '@angular/core';
-import Papa from 'papaparse';
+//import Papa from 'papaparse';
 import { BarnavComponent } from '../barnav/barnav.component';
 
 @Component({
   selector: 'app-carga-horaria',
   templateUrl: './carga-horaria.component.html',
   styleUrls: ['./carga-horaria.component.css'],
+  standalone: true,
   imports: [BarnavComponent]
 })
 export class CargaHorariaComponent {
   // Función para manejar el cambio en el input de archivo
-  handleFileChange(e: Event) {
-    const file = (e.target as HTMLInputElement).files![0];
-    if (file) {
-      Papa.parse(file, {
-        complete: (results) => {
-          this.mostrarAsignaturas(results.data);
-        }
-      });
-    }
-  }
+  
 
   // Función para mostrar las asignaturas en la tabla
   mostrarAsignaturas(data: any[]) {

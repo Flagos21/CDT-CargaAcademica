@@ -11,6 +11,7 @@
         <h1>Carga Horaria</h1>
     </header>
         <section id="Ingresar">
+           
             <h2>Ingresar</h2>
             <br>
             <label for="rut">Rut:</label>
@@ -29,11 +30,13 @@
                     <a href="#" onclick="selectOption(3)">Asociado</a>
                     <a href="#" onclick="selectOption(4)">Titular</a>
                 </div>
+            </div>
             <br>
             <label for="Hora contrato">Hora contrato:</label>
             <input type="text" id="Hora contrato" name="Hora contrato">
             <label for="PosibleHorasDeDocencia">Posible Horas de Docencia :</label>
             <input type="text" id="PosibleHorasDeDocencia" name="PosibleHorasDeDocencia">
+        
         </section>
         <br>
 </body>
@@ -93,7 +96,7 @@
         <button onclick="agregarFila('OtrosTrabajosDeGestionAcademica')">Agregar Fila</button>
         <button onclick="agregarasignatura('DocenciaDirecta')">Agregar Asignatura</button>
     </section>
-</main>
+
     <!-- Incluir el script JavaScript compilado -->
     <script src="carga-horaria.component.ts"></script>
 </html>
