@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
-import {  RouterOutlet } from '@angular/router';
+import {  RouterLink, RouterOutlet } from '@angular/router';
+import { BarnavComponent } from './Componentes/barnav/barnav.component';
 
 @Component({
     selector: 'app-root',
     standalone: true,
+    imports: [RouterOutlet, BarnavComponent, RouterLink],
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css'],
-    imports: [RouterOutlet]
+    
 })
 
 export class AppComponent {
