@@ -1,114 +1,87 @@
 body {
-    font-family: Arial, 'Times New Roman', Times, serif;
-    margin: 0;
-    padding: 0;
-}
-
-header {
-    background-color: #003264;
-    color: #fff;
-    padding: 5px;
-    text-align: center;
-}
-
-main {
-    display: flex;
-    justify-content: space-around;
-    padding: 20px;
-}
-
-section {
-    border: 1px solid #cccccc;
-    padding: 20px;
-    width: 70%;
-}
-
-section h2 {
-    margin-top: 0;
-    width: 45%;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-table th, table td {
-    border: 1px solid #ccc;
-    padding: 8px;
-    text-align: left;
-}
-
-table th {
-    background-color: #f2f2f2;
-}
-
-button {
-    background-color: #00a8ff;
-    border: none;
-    color: white;
-    padding: 8px 16px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 14px;
-    margin: 4px 2px;
-    cursor: pointer;
-}
-
-input[type="text"],
-input[type="file"] {
-    width: calc(100% - 16px);
-    padding: 8px;
-    margin-bottom: 10px;
-}
-
-/* Estilos del botón */
-.dropbtn {
-    background-color: #3498DB;
-    color: white;
-    padding: 10px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-  }
+  height: 100vh;
+  font-family: 'Times New Roman';
+  margin: 1px;
+  padding: 1px;
+  background-color:#0056b3 ;
   
-  /* Estilos del contenedor del menú desplegable */
-  .dropdown {
-    position: relative;
-    display: inline-block;
-  }
-  
-  /* Estilos del contenido del menú desplegable */
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f1f1f1;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-  }
-  
-  /* Estilos de los enlaces del menú desplegable */
-  .dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-  }
-  
-  /* Estilos de los enlaces cuando se pasan por encima */
-  .dropdown-content a:hover {
-    background-color: #ddd;
-  }
-  
-  /* Mostrar el contenido del menú desplegable cuando se pasa por encima del contenedor */
-  .dropdown:hover .dropdown-content {
-    display: block;
-  }
-  
-/* Estilos del enlace seleccionado */
-.dropdown-content a.selected {
-    background-color: #3498DB;
-    color: white;
-  }
+}
+
+/* Estilos para los campos de información */
+.containerflex {
+  margin: 50px auto;
+  width: 80%;
+  height: auto;
+  background-color: #f2f2f2;
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 15px;
+}
+
+
+/* Estilos para los campos de información */
+.nombre-item,
+.rut-item,
+.contrato-item,
+.email-item,
+.profesion-item,
+.horascontratado-item {
+width: 25%;
+padding: 5px;
+margin-bottom: 5px;
+margin-left: 5px;
+}
+
+.nombre-input,
+.rut-input-1,
+.contrato-input,
+.email-input,
+.profesion-input,
+.horascontratado-input {
+width: 100%;
+padding: 5px;
+margin-bottom: 5px;
+margin-left: 5px;
+}
+
+@media (max-width: 768px) {
+.nombre-item,
+.rut-item,
+.contrato-item,
+.email-item,
+.profesion-item,
+.horascontratado-item {
+  display: block;
+}
+}
+
+.botones-container {
+  text-align: center; /* Centra los botones horizontalmente dentro del contenedor */
+  margin-top: 20px; /* Agrega margen superior para separarlos del contenido anterior */
+}
+
+/* Estilos para los botones */
+.boton {
+  background-color: #D9D9D9; /* Color de fondo original */
+  color: #000000; /* Color del texto original */
+  padding: 1% 2%; /* Tamaño del botón */
+  border: none;
+  border-radius: 5px;
+  margin: 5px; /* Espacio entre los botones */
+  cursor: pointer;
+  margin-top: 5%; /* Espacio entre la parte superior y los botones */
+  transition: background-color 0.3s, color 0.3s; /* Agrega una transición suave para el cambio de color de fondo y del texto */
+}
+
+/* Estilos para los botones cuando el mouse está sobre ellos */
+.boton:hover {
+  background-color: #003366; /* Nuevo color de fondo al pasar el mouse por encima */
+  color: #ffffff; /* Nuevo color del texto al pasar el mouse por encima */
+}
+
+.h1{
+  position: center ;
+}
+.has{
+position: relative;
+}

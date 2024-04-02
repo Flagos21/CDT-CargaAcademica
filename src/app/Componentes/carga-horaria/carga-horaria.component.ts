@@ -139,4 +139,6 @@ export class CargaHorariaComponent {
         console.error('Error:', error);
       });
   }
+
+
 }

@@ -1,102 +1,105 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en"  style="background-color: #003366;">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carga Horaria</title>
-    <link rel="stylesheet" href="carga-horaria.component.css">
+    <meta name="viewport" content="width=device-width,user-scalable=none, initial-scale=1.0">
+    <title>Buscador con Imágenes</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 </head>
-<body>
-    <header>
-        <h1>Carga Horaria</h1>
-    </header>
-        <section id="Ingresar">
-           
-            <h2>Ingresar</h2>
-            <br>
-            <label for="rut">Rut:</label>
-            <input type="text" id="rut" name="rut">
+<body  style="background-color: #003366; ">
+  <app-barnav></app-barnav>
+    <title>Carga Academica</title>
+    <form >
+    <div class="containerflex" >
+        <h1 >Ingresar Carga</h1>
+
+        <div class="rut-item">
+            <label for="rut" >Rut:</label>
+            <input type="text" id="rut" class="form-contro" placeholder="12345678-9" required>
+        </div>
+
+        <div class="nombre-item">
             <label for="nombre">Nombre:</label>
-            <input type="text" id="Nombre" name="Nombre">
-            <label for="Grado">Grado:</label>
-            <input type="text" id="Grado" name="Grado">
-            <br>
-            <div class="dropdown">
-                <label for="Jerarquización">Jerarquización:</label>
-                <button onclick="toggleDropdown()" class="dropbtn">Seleccionar opción</button>
-                <div id="dropdown-content" class="dropdown-content">
-                    <a href="#" onclick="selectOption(1)">Instructor</a>
-                    <a href="#" onclick="selectOption(2)">Asistente</a>
-                    <a href="#" onclick="selectOption(3)">Asociado</a>
-                    <a href="#" onclick="selectOption(4)">Titular</a>
-                </div>
-            </div>
-            <br>
-            <label for="Hora contrato">Hora contrato:</label>
-            <input type="text" id="Hora contrato" name="Hora contrato">
-            <label for="PosibleHorasDeDocencia">Posible Horas de Docencia :</label>
-            <input type="text" id="PosibleHorasDeDocencia" name="PosibleHorasDeDocencia">
+            <input type="text" id="nombre" class="form-control" placeholder="Nombre y apellidos">
+        </div>
         
-        </section>
-        <br>
-</body>
-<section id="DocenciaDirecta">
-    <h3>Docencia Directa</h3>
-    <table id="DocenciaDirecta-table">
+        <div class="grado-item">
+            <label for="grado">Grado:</label>
+            <div id="grado" class="form-control" style="background-color: #ffffff;">Magister</div>
+        </div>
+        
+        <div class="jerarquizacion-item">
+            <label for="jerarquizacion">Jerarquizacion:</label>
+            <div id="jerarquizacion" class="form-control" style="background-color: #ffffff;">Instructor</div>
+        </div>
+        
+        <div class="horascontrato-item">
+            <label for="horascontrato">Horas Contrato:</label>
+            <div id="horascontrato" class="form-control" style="background-color: #ffffff;">44</div>
+        </div>
+        
+        <div class="PosibleHorasDeDocencia-item">
+            <label for="PosibleHorasDeDocencia-item">Posible Horas de Docencia:</label>
+            <div id="valorhora" class="form-control" style="background-color: #ffffff;">22</div>
+        </div>
+    </div>
+    </form>
+
+    <form>
+    <div class="containerflex">
+    <h2>Docencia Directa</h2>
+    <table id="asignaturasTable">
         <thead>
             <tr>
                 <th>Asignatura</th>
-                <th>Horas 45´</th>
+                <th>Horas</th>
                 <th>Minutos</th>
-                <th>Acciones</th>
+                <th></th>
             </tr>
         </thead>
-        <tbody id="DocenciaDirecta-body">
-            <!-- Las asignaturas se cargarán aquí -->
+        <tbody>
+            <!-- Aquí se agregarán las filas dinámicamente -->
         </tbody>
     </table>
-    <button onclick="agregarFila('DocenciaDirecta')">Agregar Fila</button>
-    <button onclick="agregarAsignatura('DocenciaDirecta')">Agregar Asignatura</button>
-</section>
-    <br>
-    <section id="DocenciaIndirecta">
-        <h4>Docencia Indirecta</h4>
-        <table id="DocenciaIndirecta-table">
-            <thead>
-                <tr>
-                    <th>Concepto</th>
-                    <th>Horas</th>
-                    <th>Minutos</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody id="DocenciaIndirecta-body">
-                <!-- Las asignaturas se cargarán aquí -->
-            </tbody>
-        </table>
-        <button onclick="agregarFila('DocenciaIndirecta')">Agregar Fila</button>
-        <button onclick="agregar('DocenciaDirecta')">Agregar Asignatura</button>
-    </section>
-    <br>
-    <section id="OtrosTrabajosDeGestionAcademica">
-        <h5>Otros Trabajos de Gestión Académica</h5>
-        <table id="OtrosTrabajosDeGestionAcademica-table">
-            <thead>
-                <tr>
-                    <th>Concepto</th>
-                    <th>Horas 60'</th>
-                    <th>Minutos</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody id="OtrosTrabajosDeGestionAcademica-body">
-                <!-- Las asignaturas se cargarán aquí -->
-            </tbody>
-        </table>
-        <button onclick="agregarFila('OtrosTrabajosDeGestionAcademica')">Agregar Fila</button>
-        <button onclick="agregarasignatura('DocenciaDirecta')">Agregar Asignatura</button>
-    </section>
+    <button class="add-btn" onclick="agregarFila()">Agregar Fila</button>
+    </div>
+    </form>
 
-    <!-- Incluir el script JavaScript compilado -->
-    <script src="carga-horaria.component.ts"></script>
+    <form >
+    <div class="containerflex" >
+        <h3>Docencia Indirecta</h3>
+
+        <div class="rut-item">
+            <label for="rut" >Rut:</label>
+            <input type="text" id="rut" class="form-contro" placeholder="12345678-9" required>
+        </div>
+
+        <div class="nombre-item">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" class="form-control" placeholder="Nombre y apellidos">
+        </div>
+        
+        <div class="grado-item">
+            <label for="grado">Grado:</label>
+            <div id="grado" class="form-control" style="background-color: #ffffff;">Magister</div>
+        </div>
+        
+        <div class="jerarquizacion-item">
+            <label for="jerarquizacion">Jerarquizacion:</label>
+            <div id="jerarquizacion" class="form-control" style="background-color: #ffffff;">Instructor</div>
+        </div>
+        
+        <div class="horascontrato-item">
+            <label for="horascontrato">Horas Contrato:</label>
+            <div id="horascontrato" class="form-control" style="background-color: #ffffff;">44</div>>
+        </div>
+        
+        <div class="PosibleHorasDeDocencia-item">
+            <label for="PosibleHorasDeDocencia-item">Posible Horas de Docencia:</label>
+            <div id="valorhora" class="form-control" style="background-color: #ffffff;">22</div>
+        </div>
+    </div>
+    </form>
+
+</body>
 </html>
