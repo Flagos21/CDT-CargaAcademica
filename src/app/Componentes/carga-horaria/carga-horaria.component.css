@@ -4,54 +4,144 @@ body {
   margin: 1px;
   padding: 1px;
   background-color:#0056b3 ;
-  
+  display: flex; /* Añadido */
+  flex-direction: column; /* Añadido */
+  /*align-items: center; /* Añadido */
 }
 
 /* Estilos para los campos de información */
 .containerflex {
-  margin: 50px auto;
-  width: 80%;
-  height: auto;
+  margin: 15px auto;
+  width: 40%;
+  max-width: 800px; /* Añadido un ancho máximo */
+  min-width: 760px; /* Añadido un ancho mínimo */
   background-color: #f2f2f2;
   padding: 10px;
   border: 2px solid #ccc;
   border-radius: 15px;
 }
 
+.containerflex1 {
+  margin: 15px;
+  width: 80%;
+  max-width: 800px; /* Añadido un ancho máximo */
+  min-width: 760px; /* Añadido un ancho mínimo */
+  background-color: #f2f2f2;
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 15px;
+}
+
+.containerflex2 {
+  margin: 15px;
+  margin-left: 855px;
+  margin-top: -185px;
+  width: 80%;
+  max-width: 800px; /* Añadido un ancho máximo */
+  min-width: 760px; /* Añadido un ancho mínimo */
+  background-color: #f2f2f2;
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 15px;
+}
+
+.containerflex3 {
+  margin: 15px;
+  width: 80%;
+  max-width: 800px; /* Añadido un ancho máximo */
+  min-width: 760px; /* Añadido un ancho mínimo */
+  background-color: #f2f2f2;
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 15px;
+}
+
+.containerflex4 {
+  margin: 15px;
+  margin-left: 855px;
+  margin-top: -180px;
+  width: 80%;
+  max-width: 800px; /* Añadido un ancho máximo */
+  min-width: 760px; /* Añadido un ancho mínimo */
+  background-color: #f2f2f2;
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 15px;
+}
 
 /* Estilos para los campos de información */
-.nombre-item,
-.rut-item,
-.contrato-item,
-.email-item,
-.profesion-item,
-.horascontratado-item {
-width: 25%;
-padding: 5px;
-margin-bottom: 5px;
-margin-left: 5px;
+.nombre-item {
+  width: 25%;
+  padding: 5px;
+  margin-bottom: 5px;
+  margin-left: 125px;
+  margin-top: -74px;
+}
+
+.rut-item {
+  width: 15%;
+  padding: 5px;
+  margin-bottom: 5px;
+  margin-left: 5px;
+}
+
+.grado-item {
+  width: 18%;
+  padding: 5px;
+  margin-bottom: 5px;
+  margin-left: 315px;
+  margin-top: -74px;
+}
+
+.jerarquizacion-item {
+  width: 15%;
+  padding: 5px;
+  margin-bottom: 5px;
+  margin-left: 5px;
+}
+
+.horascontrato-item {
+  width: 16%;
+  padding: 5px;
+  margin-bottom: 5px;
+  margin-left: 128px;
+  margin-top: -74px;
+}
+
+.PosibleHorasDeDocencia-item {
+  width: 25%;
+  padding: 5px;
+  margin-bottom: 5px;
+  margin-left: 317px;
+  margin-top: -74px;
 }
 
 .nombre-input,
-.rut-input-1,
-.contrato-input,
-.email-input,
-.profesion-input,
-.horascontratado-input {
+.rut-input,
+.grado-input,
+.jerarquizacion-input,
+.horascontrato-input,
+.PosibleHorasDeDocencia-input {
 width: 100%;
-padding: 5px;
+padding: 1px;
 margin-bottom: 5px;
 margin-left: 5px;
 }
 
 @media (max-width: 768px) {
-.nombre-item,
-.rut-item,
-.contrato-item,
-.email-item,
-.profesion-item,
-.horascontratado-item {
-  display: block;
+
+  .containerflex {
+    width: 80%; /* Cambiado de 66% a 80% */
+    margin: 15px; /* Reducido el margen */
+  }
+  
+  .nombre-item,
+  .rut-item,
+  .grado-item,
+  .jerarquizacion-item,
+  .horascontrato-item,
+  .PosiblesHorasDeDocencia-item {
+    display: block;
 }
 }
 
@@ -80,7 +170,7 @@ margin-left: 5px;
 }
 
 .h1{
-  position: center ;
+  position: center;
 }
 .has{
 position: relative;

@@ -1,144 +1,116 @@
 import { Component } from '@angular/core';
-//import Papa from 'papaparse';
 import { BarnavComponent } from '../barnav/barnav.component';
 
 @Component({
-  selector: 'app-carga-horaria',
-  templateUrl: './carga-horaria.component.html',
-  styleUrls: ['./carga-horaria.component.css'],
-  standalone: true,
-  imports: [BarnavComponent]
+    selector: 'app-carga-horaria',
+    templateUrl: './carga-horaria.component.html',
+    styleUrls: ['./carga-horaria.component.css'],
+    standalone: true,
+    imports: [BarnavComponent]
 })
 export class CargaHorariaComponent {
-  // Función para manejar el cambio en el input de archivo
-  
 
-  // Función para mostrar las asignaturas en la tabla
-  mostrarAsignaturas(data: any[]) {
-    const tableBody = document.getElementById('asignaturas-body')!;
-    tableBody.innerHTML = '';
-    for (let i = 0; i < data.length; i++) {
-      const row = document.createElement('tr');
-      for (let j = 0; j < data[i].length; j++) {
-        const cell = document.createElement('td');
-        cell.textContent = data[i][j];
-        row.appendChild(cell);
-      }
-      const deleteCell = document.createElement('td');
-      const deleteButton = document.createElement('button');
-      deleteButton.textContent = 'Eliminar';
-      deleteButton.addEventListener('click', () => {
-        row.remove();
-      });
-      deleteCell.appendChild(deleteButton);
-      row.appendChild(deleteCell);
-      tableBody.appendChild(row);
-    }
-  }
+    /*constructor() {
+        // Event listeners para detectar cambios en los campos de rut y nombre
+        document.getElementById("rut")?.addEventListener("input", this.mostrarDatos.bind(this));
+        document.getElementById("nombre")?.addEventListener("input", this.mostrarDatos.bind(this));
+    }*/
 
-  toggleDropdown() {
-    var dropdownContent = document.getElementById("dropdown-content")!;
-    if (dropdownContent.style.display === "block") {
-      dropdownContent.style.display = "none";
-    } else {
-      dropdownContent.style.display = "block";
-    }
-  }
-
-  // Función para agregar una fila
-  agregarFila(sectionId: string) {
-    const sectionBody = document.getElementById(sectionId + '-body')!;
-    const newRow = document.createElement('tr');
-    switch (sectionId) {
-      case 'DocenciaDirecta':
-        newRow.innerHTML = `
-          <td contenteditable="true">Nueva Asignatura</td>
-          <td contenteditable="true">0</td>
-          <td contenteditable="true">0</td>
-          <td>
-            <button (click)="eliminarFila($event.target)">Eliminar</button>
-          </td>
-        `;
-        break;
-      case 'DocenciaIndirecta':
-        newRow.innerHTML = `
-          <td contenteditable="true">Nuevo Concepto</td>
-          <td contenteditable="true">0</td>
-          <td contenteditable="true">0</td>
-          <td>
-            <button (click)="eliminarFila($event.target)">Eliminar</button>
-          </td>
-        `;
-        break;
-      case 'OtrosTrabajosDeGestionAcademica':
-        newRow.innerHTML = `
-          <td contenteditable="true">Nuevo Concepto</td>
-          <td contenteditable="true">0</td>
-          <td contenteditable="true">0</td>
-          <td>
-            <button (click)="eliminarFila($event.target)">Eliminar</button>
-          </td>
-        `;
-        break;
-      default:
-        break;
-    }
-    sectionBody.appendChild(newRow);
-  }
-
-  agregarAsignatura(button: HTMLButtonElement) {
-    const row = button.closest('tr')!;
-    const newRow = row.cloneNode(true) as HTMLTableRowElement; // Clonar la fila actual
-    newRow.querySelector('td')!.textContent = ''; // Limpiar el contenido de la primera celda
-    const newButton = newRow.querySelector('button')!;
-    newButton.textContent = 'Agregar'; // Cambiar el texto del botón a "Agregar"
-    newButton.onclick = () => {
-      this.agregarAsignatura(newButton);
-    }; // Asignar el evento de agregar para el nuevo botón
-    const sectionBody = row.parentElement!;
-    sectionBody.appendChild(newRow);
-  }
-
-  eliminarFila(button: HTMLButtonElement) {
-    const row = button.closest('tr')!;
-    row.remove();
-  }
-
-  agregarasignatura(sectionId: string) {
-    const sectionBody = document.getElementById(sectionId + '-body')!;
-    const rows = sectionBody.querySelectorAll('tr');
-    const data: any[] = [];
-    rows.forEach(row => {
-      const cells = row.querySelectorAll('td');
-      const asignatura = {
-        nombre: cells[0].textContent!.trim(),
-        horas: parseInt(cells[1].textContent!.trim()),
-        minutos: parseInt(cells[2].textContent!.trim())
-      };
-      data.push(asignatura);
-    });
-    console.log('Datos a enviar:', data);
-
-    // Enviar los datos al backend
-    fetch('url_del_backend', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    })
-      .then(response => {
-        if (response.ok) {
-          console.log('Datos agregados correctamente.');
-          // Aquí puedes agregar lógica adicional si es necesario
-        } else {
-          console.error('Error al agregar los datos.');
+    agregarFila(tablaId: string) {
+        const tbody = document.querySelector(`#${tablaId} tbody`);
+        if (tbody) {
+            const newRow = document.createElement('tr');
+            newRow.innerHTML = `
+                <td><input type="text" name="asignatura"></td>
+                <td><input type="number" name="horas" min="0"></td>
+                <td><input type="number" name="minutos" min="0" max="59"></td>
+                <td><button type="button" class="remove-btn">Eliminar</button></td>
+            `;
+            tbody.appendChild(newRow);
+    
+            // Adjuntar evento de clic al botón "Eliminar"
+            const deleteButton = newRow.querySelector('.remove-btn');
+            if (deleteButton) {
+                deleteButton.addEventListener('click', () => {
+                    this.eliminarFila(newRow, tablaId);
+                });
+            }
+    
+            // Verificar si el contenedor es el de docencia directa o indirecta
+            if (tablaId === 'asignaturasTable') {
+                // Si es docencia directa, agregar la misma fila al contenedor de docencia indirecta
+                const tbodyIndirecta = document.querySelector(`#asignaturasTable1 tbody`);
+                if (tbodyIndirecta) {
+                    const newRowIndirecta = newRow.cloneNode(true) as HTMLElement;
+                    tbodyIndirecta.appendChild(newRowIndirecta);
+    
+                    // Adjuntar evento de clic al botón "Eliminar" en el contenedor de docencia indirecta
+                    const deleteButtonIndirecta = newRowIndirecta.querySelector('.remove-btn');
+                    if (deleteButtonIndirecta) {
+                        deleteButtonIndirecta.addEventListener('click', () => {
+                            this.eliminarFila(newRowIndirecta, 'asignaturasTable1');
+                        });
+                    }
+                }
+            } else if (tablaId === 'asignaturasTable1') {
+                // Si es docencia indirecta, agregar la misma fila al contenedor de docencia directa
+                const tbodyDirecta = document.querySelector(`#asignaturasTable tbody`);
+                if (tbodyDirecta) {
+                    const newRowDirecta = newRow.cloneNode(true) as HTMLElement;
+                    tbodyDirecta.appendChild(newRowDirecta);
+    
+                    // Adjuntar evento de clic al botón "Eliminar" en el contenedor de docencia directa
+                    const deleteButtonDirecta = newRowDirecta.querySelector('.remove-btn');
+                    if (deleteButtonDirecta) {
+                        deleteButtonDirecta.addEventListener('click', () => {
+                            this.eliminarFila(newRowDirecta, 'asignaturasTable');
+                        });
+                    }
+                }
+            }
         }
-      })
-      .catch(error => {
-        console.error('Error:', error);
-      });
-  }
+    }
+    
+    eliminarFila(row: HTMLElement, tablaId: string) {
+        row.remove();
+        this.calcularTotalHorasMinutos(); // Llamada a la función para recalcular totales después de eliminar la fila
+    }
+    
+   /*// Función para obtener y mostrar los datos según el rut o nombre ingresado
+    mostrarDatos() {
+        const rut = (document.getElementById("rut") as HTMLInputElement).value;
+        const nombre = (document.getElementById("nombre") as HTMLInputElement).value;
+    
+    // Aquí deberías implementar la lógica para obtener los datos correspondientes
+    // a partir del rut o nombre ingresado
+    
+    // Ejemplo de cómo podrías asignar datos aleatorios
+    document.getElementById("grado")!.innerText = "Magister";
+    document.getElementById("jerarquizacion")!.innerText = "Instructor";
+    document.getElementById("horascontrato")!.innerText = "44";
+    document.getElementById("PosibleHorasDeDocencia")!.innerText = "22";
+}*/
 
+    // Nuevo código TypeScript para calcular el total de horas y minutos
+    calcularTotalHorasMinutos() {
+        let totalHoras = 0;
+        let totalMinutos = 0;
+        const filas = document.querySelectorAll('#asignaturasTable tbody tr');
+        filas.forEach((fila) => {
+            const horasInput = fila.querySelector('input[name="horas"]') as HTMLInputElement;
+            const minutosInput = fila.querySelector('input[name="minutos"]') as HTMLInputElement;
+            if (horasInput && minutosInput) {
+                totalHoras += parseInt(horasInput.value) || 0;
+                totalMinutos += parseInt(minutosInput.value) || 0;
+            }
+        });
 
+        // Actualizar los elementos span con los totales calculados
+        const totalHorasSpan = document.getElementById('totalHorasValor');
+        const totalMinutosSpan = document.getElementById('totalMinutosValor');
+        if (totalHorasSpan && totalMinutosSpan) {
+            totalHorasSpan.textContent = totalHoras.toString();
+            totalMinutosSpan.textContent = totalMinutos.toString();
+        }
+    }
 }

@@ -1,105 +1,122 @@
 <!DOCTYPE html>
-<html lang="en"  style="background-color: #003366;">
+<html lang="en" style="background-color: #003366;">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,user-scalable=none, initial-scale=1.0">
     <title>Buscador con Imágenes</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 </head>
-<body  style="background-color: #003366; ">
-  <app-barnav></app-barnav>
+
+<body style="background-color: #003366;">
+    <app-barnav></app-barnav>
     <title>Carga Academica</title>
-    <form >
-    <div class="containerflex" >
-        <h1 >Ingresar Carga</h1>
+    <form>
+        <div class="containerflex">
+            <h1>Ingresar Carga</h1>
 
-        <div class="rut-item">
-            <label for="rut" >Rut:</label>
-            <input type="text" id="rut" class="form-contro" placeholder="12345678-9" required>
-        </div>
+            <div class="rut-item">
+                <label for="rut">Rut:</label>
+                <input type="text" id="rut" class="form-control" placeholder="12345678-9" required>
+            </div>
 
-        <div class="nombre-item">
-            <label for="nombre">Nombre:</label>
-            <input type="text" id="nombre" class="form-control" placeholder="Nombre y apellidos">
+            <div class="nombre-item">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" class="form-control" placeholder="Nombre y apellidos">
+            </div>
+
+            <div class="grado-item">
+                <label for="grado">Grado:</label>
+                <div id="grado" class="form-control" style="background-color: #ffffff;">Magister</div>
+            </div>
+
+            <div class="jerarquizacion-item">
+                <label for="jerarquizacion">Jerarquizacion:</label>
+                <div id="jerarquizacion" class="form-control" style="background-color: #ffffff;">Instructor</div>
+            </div>
+
+            <div class="horascontrato-item">
+                <label for="horascontrato">Horas Contrato:</label>
+                <div id="horascontrato" class="form-control" style="background-color: #ffffff;">44</div>
+            </div>
+
+            <div class="PosibleHorasDeDocencia-item">
+                <label for="PosibleHorasDeDocencia-item">Posible Horas de Docencia:</label>
+                <div id="PosibleHorasDeDocencia" class="form-control" style="background-color: #ffffff;">22</div>
+            </div>
         </div>
-        
-        <div class="grado-item">
-            <label for="grado">Grado:</label>
-            <div id="grado" class="form-control" style="background-color: #ffffff;">Magister</div>
-        </div>
-        
-        <div class="jerarquizacion-item">
-            <label for="jerarquizacion">Jerarquizacion:</label>
-            <div id="jerarquizacion" class="form-control" style="background-color: #ffffff;">Instructor</div>
-        </div>
-        
-        <div class="horascontrato-item">
-            <label for="horascontrato">Horas Contrato:</label>
-            <div id="horascontrato" class="form-control" style="background-color: #ffffff;">44</div>
-        </div>
-        
-        <div class="PosibleHorasDeDocencia-item">
-            <label for="PosibleHorasDeDocencia-item">Posible Horas de Docencia:</label>
-            <div id="valorhora" class="form-control" style="background-color: #ffffff;">22</div>
-        </div>
-    </div>
     </form>
 
     <form>
-    <div class="containerflex">
-    <h2>Docencia Directa</h2>
-    <table id="asignaturasTable">
-        <thead>
-            <tr>
-                <th>Asignatura</th>
-                <th>Horas</th>
-                <th>Minutos</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Aquí se agregarán las filas dinámicamente -->
-        </tbody>
-    </table>
-    <button class="add-btn" onclick="agregarFila()">Agregar Fila</button>
-    </div>
+        <div class="containerflex1">
+            <h2>Docencia Directa</h2>
+            <table id="asignaturasTable">
+                <thead>
+                    <tr>
+                        <th>Asignatura</th>
+                        <th>Horas 45'</th>
+                        <th>Minutos</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="asignaturas-body">
+                    <!-- Aquí se agregarán las filas dinámicamente -->
+                </tbody>
+            </table>
+            <div id="totalHoras">Total Horas: <span id="totalHorasValor">0</span></div>
+            <div id="totalMinutos">Total Minutos: <span id="totalMinutosValor">0</span></div>
+            <button type="button" class="add-btn" (click)="agregarFila('asignaturasTable')">Agregar Fila</button>
+        </div>
     </form>
 
-    <form >
-    <div class="containerflex" >
-        <h3>Docencia Indirecta</h3>
-
-        <div class="rut-item">
-            <label for="rut" >Rut:</label>
-            <input type="text" id="rut" class="form-contro" placeholder="12345678-9" required>
+    <form>
+        <div class="containerflex2">
+            <h3>Docencia Indirecta</h3>
+            <table id="asignaturasTable1">
+                <thead>
+                    <tr>
+                        <th>Concepto</th>
+                        <th>Horas 60'</th>
+                        <th>Minutos</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="asignaturas-body">
+                    <!-- Aquí se agregarán las filas dinámicamente -->
+                </tbody>
+            </table>
+            <div id="totalHoras">Total Horas: <span id="totalHorasValor">0</span></div>
+            <div id="totalMinutos">Total Minutos: <span id="totalMinutosValor">0</span></div>
         </div>
-
-        <div class="nombre-item">
-            <label for="nombre">Nombre:</label>
-            <input type="text" id="nombre" class="form-control" placeholder="Nombre y apellidos">
-        </div>
-        
-        <div class="grado-item">
-            <label for="grado">Grado:</label>
-            <div id="grado" class="form-control" style="background-color: #ffffff;">Magister</div>
-        </div>
-        
-        <div class="jerarquizacion-item">
-            <label for="jerarquizacion">Jerarquizacion:</label>
-            <div id="jerarquizacion" class="form-control" style="background-color: #ffffff;">Instructor</div>
-        </div>
-        
-        <div class="horascontrato-item">
-            <label for="horascontrato">Horas Contrato:</label>
-            <div id="horascontrato" class="form-control" style="background-color: #ffffff;">44</div>>
-        </div>
-        
-        <div class="PosibleHorasDeDocencia-item">
-            <label for="PosibleHorasDeDocencia-item">Posible Horas de Docencia:</label>
-            <div id="valorhora" class="form-control" style="background-color: #ffffff;">22</div>
-        </div>
-    </div>
     </form>
 
+    <form>
+        <div class="containerflex3">
+            <h3>Otros Trabajos de Gestión Académica</h3>
+            <table id="asignaturasTable2">
+                <thead>
+                    <tr>
+                        <th>Concepto</th>
+                        <th>Horas 60'</th>
+                        <th>Minutos</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="asignaturas-body">
+                    <!-- Aquí se agregarán las filas dinámicamente -->
+                </tbody>
+            </table>
+            <div id="totalHoras">Total Horas: <span id="totalHorasValor">0</span></div>
+            <div id="totalMinutos">Total Minutos: <span id="totalMinutosValor">0</span></div>
+            <button type="button" class="add-btn" (click)="agregarFila('asignaturasTable2')">Agregar Fila</button>
+        </div>
+    </form>
+
+    <form>
+        <div class="containerflex4">
+            <h3>Notas</h3>
+            <textarea rows="4" cols="50" placeholder="Escribe tus notas aquí"></textarea>
+        </div>
+    </form>
 </body>
 </html>
