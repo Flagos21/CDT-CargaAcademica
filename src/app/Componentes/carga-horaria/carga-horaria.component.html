@@ -22,7 +22,12 @@
 
             <div class="nombre-item">
                 <label for="nombre">Nombre:</label>
-                <input type="text" id="nombre" class="form-control" placeholder="Nombre y apellidos">
+                <input type="text" id="nombre" class="form-control" placeholder="Nombre y apellidos" autocomplete="off">
+            </div>
+
+            <div class="año-item">
+                <label for="año-item">Año:</label>
+                <input type="text" id="año" class="form-control" placeholder="2024">
             </div>
 
             <div class="grado-item">
@@ -46,7 +51,7 @@
             </div>
         </div>
     </form>
-
+    <div class="flex-container">
     <form>
         <div class="containerflex1">
             <h2>Docencia Directa</h2>
@@ -67,9 +72,7 @@
             <div id="totalMinutos">Total Minutos: <span id="totalMinutosValor">0</span></div>
             <button type="button" class="add-btn" (click)="agregarFila('asignaturasTable')">Agregar Fila</button>
         </div>
-    </form>
-
-    <form>
+    
         <div class="containerflex2">
             <h3>Docencia Indirecta</h3>
             <table id="asignaturasTable1">
@@ -84,9 +87,19 @@
                 <tbody id="asignaturas-body">
                     <!-- Aquí se agregarán las filas dinámicamente -->
                 </tbody>
+                <tbody>
+                    <!-- Filas de la tabla de docencia indirecta -->
+                    <!-- <tr *ngFor="let fila of filasIndirecta; let i = index">
+                        <td><input type="text" name="asignatura" [(ngModel)]="fila.asignatura"></td>
+                        <td><input type="number" name="horas" min="0" [(ngModel)]="fila.horas"></td>
+                        <td><input type="number" name="minutos" min="0" max="59" [(ngModel)]="fila.minutos"></td>
+                        <td><button type="button" (click)="eliminarFilaIndirecta(i)">Eliminar</button></td>
+                    </tr> -->
+                </tbody>
             </table>
             <div id="totalHoras">Total Horas: <span id="totalHorasValor">0</span></div>
             <div id="totalMinutos">Total Minutos: <span id="totalMinutosValor">0</span></div>
+            <button type="button" (click)="agregarFilaIndirecta()">Agregar Fila</button>
         </div>
     </form>
 
@@ -118,5 +131,6 @@
             <textarea rows="4" cols="50" placeholder="Escribe tus notas aquí"></textarea>
         </div>
     </form>
+    </div>
 </body>
 </html>

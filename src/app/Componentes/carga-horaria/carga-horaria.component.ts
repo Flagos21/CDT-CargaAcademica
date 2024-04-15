@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
 import { BarnavComponent } from '../barnav/barnav.component';
+import { BackendService } from './server';
 
 @Component({
     selector: 'app-carga-horaria',
@@ -9,6 +10,51 @@ import { BarnavComponent } from '../barnav/barnav.component';
     imports: [BarnavComponent]
 })
 export class CargaHorariaComponent {
+
+    constructor(private backendService: BackendService) { }
+
+    buscarDatos() {
+        const rut = '12345678-9'; // Obtener rut del formulario
+        const nombre = 'Nombre Apellido'; // Obtener nombre del formulario
+        const año = '2024'; // Obtener año del formulario
+      
+        this.backendService.buscarDatos(rut, nombre, año).subscribe(
+          (datos: any) => {
+            console.log('Datos encontrados:', datos);
+            // Actualizar los campos del formulario con los datos encontrados
+          },
+          (error: Error) => {
+            console.error('Error al buscar datos:', error);
+          }
+        );
+      }
+      
+
+  guardarDatosCarga() {
+    const datos = {
+      rut: '12345678-9',
+      nombre: 'Nombre Apellido',
+      año: '2024',
+      grado: 'Magister',
+      jerarquizacion: 'Instructor',
+      horascontrato: '44',
+      PosibleHorasDeDocencia: '22',
+      asignaturas: [
+        // Aquí deberías incluir los datos de las asignaturas
+      ]
+    };
+
+    this.backendService.guardarCargaHoraria(datos).subscribe(
+      (response) => {
+        console.log('Datos de carga horaria guardados correctamente:', response);
+      },
+      (error) => {
+        console.error('Error al guardar datos de carga horaria:', error);
+      }
+    );
+  }
+
+    filasIndirecta: any[] = []; // Array para almacenar las filas de la tabla de docencia indirecta
 
     /*constructor() {
         // Event listeners para detectar cambios en los campos de rut y nombre
@@ -20,21 +66,29 @@ export class CargaHorariaComponent {
         const tbody = document.querySelector(`#${tablaId} tbody`);
         if (tbody) {
             const newRow = document.createElement('tr');
+            const uniqueId = Date.now(); // Generar un identificador único basado en el tiempo
+            newRow.dataset['id'] = uniqueId.toString(); // Asignar el identificador único a la fila
             newRow.innerHTML = `
                 <td><input type="text" name="asignatura"></td>
                 <td><input type="number" name="horas" min="0"></td>
                 <td><input type="number" name="minutos" min="0" max="59"></td>
-                <td><button type="button" class="remove-btn">Eliminar</button></td>
             `;
-            tbody.appendChild(newRow);
     
-            // Adjuntar evento de clic al botón "Eliminar"
-            const deleteButton = newRow.querySelector('.remove-btn');
-            if (deleteButton) {
-                deleteButton.addEventListener('click', () => {
-                    this.eliminarFila(newRow, tablaId);
-                });
+            // Verificar si es la tabla de docencia directa para agregar el botón "Eliminar"
+            if (tablaId === 'asignaturasTable') {
+                newRow.innerHTML += `<td><button type="button" class="remove-btn">Eliminar</button></td>`;
+                const deleteButton = newRow.querySelector('.remove-btn');
+                if (deleteButton) {
+                    deleteButton.addEventListener('click', () => {
+                        this.eliminarFila(newRow, tablaId);
+                    });
+                }
+            } else {
+                // Si es docencia indirecta, no agregar el botón "Eliminar"
+                newRow.innerHTML += `<td></td>`;
             }
+            
+            tbody.appendChild(newRow);
     
             // Verificar si el contenedor es el de docencia directa o indirecta
             if (tablaId === 'asignaturasTable') {
@@ -42,38 +96,105 @@ export class CargaHorariaComponent {
                 const tbodyIndirecta = document.querySelector(`#asignaturasTable1 tbody`);
                 if (tbodyIndirecta) {
                     const newRowIndirecta = newRow.cloneNode(true) as HTMLElement;
+                    newRowIndirecta.dataset['id'] = uniqueId.toString(); // Asignar el mismo identificador único
                     tbodyIndirecta.appendChild(newRowIndirecta);
-    
-                    // Adjuntar evento de clic al botón "Eliminar" en el contenedor de docencia indirecta
-                    const deleteButtonIndirecta = newRowIndirecta.querySelector('.remove-btn');
-                    if (deleteButtonIndirecta) {
-                        deleteButtonIndirecta.addEventListener('click', () => {
-                            this.eliminarFila(newRowIndirecta, 'asignaturasTable1');
-                        });
-                    }
                 }
             } else if (tablaId === 'asignaturasTable1') {
                 // Si es docencia indirecta, agregar la misma fila al contenedor de docencia directa
                 const tbodyDirecta = document.querySelector(`#asignaturasTable tbody`);
                 if (tbodyDirecta) {
                     const newRowDirecta = newRow.cloneNode(true) as HTMLElement;
+                    newRowDirecta.dataset['id'] = uniqueId.toString(); // Asignar el mismo identificador único
                     tbodyDirecta.appendChild(newRowDirecta);
-    
-                    // Adjuntar evento de clic al botón "Eliminar" en el contenedor de docencia directa
-                    const deleteButtonDirecta = newRowDirecta.querySelector('.remove-btn');
-                    if (deleteButtonDirecta) {
-                        deleteButtonDirecta.addEventListener('click', () => {
-                            this.eliminarFila(newRowDirecta, 'asignaturasTable');
-                        });
-                    }
                 }
             }
         }
     }
+
+    agregarFilaIndirecta() {
+
+        const tablaId = 'asignaturasTable1';
+        const tbody = document.querySelector(`#${tablaId} tbody`);
+        if (tbody) {
+            const newRow = document.createElement('tr');
+            const uniqueId = Date.now(); // Generar un identificador único basado en el tiempo
+            newRow.dataset['id'] = uniqueId.toString(); // Asignar el identificador único a la fila
+            newRow.innerHTML = `
+                <td><input type="text" name="asignatura"></td>
+                <td><input type="number" name="horas" min="0"></td>
+                <td><input type="number" name="minutos" min="0" max="59"></td>
+                <td><button type="button" class="remove-btn">Eliminar</button></td>
+            `;
+    
+            tbody.appendChild(newRow);
+    
+            const deleteButton = newRow.querySelector('.remove-btn');
+            if (deleteButton) {
+                deleteButton.addEventListener('click', () => {
+                    this.eliminarFila(newRow, tablaId);
+                });
+            }
+        }
+
+        this.filasIndirecta.push({ asignatura: '', horas: 0, minutos: 0 });
+    }
+    
+    ngOnInit() {
+        // Agregar la funcionalidad de agregar filas a la tabla de docencia indirecta al inicializar el componente
+        this.agregarFilaIndirecta();
+    }
+
+    eliminarFilaIndirecta(index: number) {
+        try {
+            console.log('Eliminando fila:', index);
+            this.filasIndirecta.splice(index, 1);
+            console.log('Filas actualizadas:', this.filasIndirecta);
+        } catch (error) {
+            console.error('Error al eliminar fila:', error);
+        }
+    }
     
     eliminarFila(row: HTMLElement, tablaId: string) {
-        row.remove();
-        this.calcularTotalHorasMinutos(); // Llamada a la función para recalcular totales después de eliminar la fila
+        console.log('Fila:', row);
+        console.log('ID de tabla:', tablaId);
+    
+        if (!row || !tablaId) {
+            console.error('Fila o ID de tabla no válidos.');
+            return;
+        }
+    
+        // Verificar si row es un nodo hijo directo de la tabla
+        if (!row.parentNode || row.parentNode.nodeName !== 'TBODY') {
+            console.error('La fila no es un hijo directo de una tabla.');
+            return;
+        }
+    
+        if (tablaId === 'asignaturasTable') {
+            row.remove();
+    
+            const filaIndirectaId = row.dataset['id'];
+            if (filaIndirectaId) {
+                const filaIndirecta = document.querySelector(`#asignaturasTable1 tr[data-id="${filaIndirectaId}"]`);
+                if (filaIndirecta) {
+                    filaIndirecta.remove();
+                }
+            }
+        } else if (tablaId === 'asignaturasTable1') {
+            const tablaDirecta = document.querySelector('#asignaturasTable tbody');
+            if (tablaDirecta) {
+                const filaDirectaId = row.dataset['id'];
+                if (filaDirectaId) {
+                    const filaDirecta = tablaDirecta.querySelector(`tr[data-id="${filaDirectaId}"]`);
+                    if (filaDirecta) {
+                        filaDirecta.remove();
+                    }
+                }
+            }
+        } else {
+            console.error('ID de tabla no reconocido.');
+        }
+    
+        this.calcularTotalHorasMinutos();
     }
     
    /*// Función para obtener y mostrar los datos según el rut o nombre ingresado
