@@ -1,3 +1,6 @@
+:root{
+  --color-white:#f2f2f2;
+}
 body {
   height: 100vh;
   font-family: 'Times New Roman';
@@ -189,4 +192,19 @@ margin-left: 5px;
 }
 .has{
 position: relative;
+}
+
+.enviar-btn {
+  background-color: #ffffff; /* Color de fondo */
+  color: rgb(0, 0, 0); /* Color del texto */
+  padding: 10px 20px; /* Espacio de relleno */
+  border: none; /* Sin borde */
+  border-radius: 5px; /* Borde redondeado */
+  cursor: pointer; /* Cursor al pasar por encima */
+  transition: background-color 0.3s; /* Transición suave */
+  
+}
+
+.enviar-btn:hover {
+  background-color: #0056b3; /* Cambio de color al pasar por encima */
 }
